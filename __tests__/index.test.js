@@ -68,6 +68,15 @@ testRule({
         { message: messages.rejected("always") }
       ],
       error: true,
+    },
+    {
+      description: "should fix every selector in a list",
+      code: ".foo { :before, .bar, ::after { content: 'foo'; } }",
+      fixed: ".foo { &:before, .bar, &::after { content: 'foo'; } }",
+      warnings: [
+        { message: messages.rejected("always") },
+        { message: messages.rejected("always") }
+      ],
     }
   ]
 });
